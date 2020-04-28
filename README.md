@@ -61,6 +61,22 @@ Run download_dependecies.sh script from MSYS2:
 C:\tools\msys64\msys2_shell.cmd -defterm -no-start -here -c "./tensorflow/lite/tools/make/download_dependencies.sh"
 ```
 
+Modify the Bazel script:
+```
+###
+# --- a/tensorflow/lite/build_def.bzl
+# +++ b/tensorflow/lite/build_def.bzl
+# @@ -159,6 +159,7 @@ def tflite_cc_shared_object(
+#      tf_cc_shared_object(
+#          name = name,
+#          copts = copts,
+# +        features = ["windows_export_all_symbols"],
+#          linkstatic = linkstatic,
+#          linkopts = linkopts + tflite_jni_linkopts(),
+#          framework_so = [],
+###
+```
+
 Configure the environment:
 ```
 python configure.py
